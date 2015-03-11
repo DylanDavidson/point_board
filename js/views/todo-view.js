@@ -32,7 +32,6 @@ var app = app || {};
 		initialize: function () {
 			this.listenTo(this.model, 'change', this.render);
 			this.listenTo(this.model, 'destroy', this.remove);
-			this.listenTo(this.model, 'visible', this.toggleVisible);
 		},
 
 		// Re-render the titles of the todo item.
@@ -50,24 +49,8 @@ var app = app || {};
 
 			this.$el.html(this.template(this.model.toJSON()));
 			this.$el.toggleClass('completed', this.model.get('completed'));
-			this.toggleVisible();
 			this.$input = this.$('.edit');
 			return this;
-		},
-
-		toggleVisible: function () {
-			this.$el.toggleClass('hidden', this.isHidden());
-		},
-
-		isHidden: function () {
-			return this.model.get('completed') ?
-				app.TodoFilter === 'active' :
-				app.TodoFilter === 'completed';
-		},
-
-		// Toggle the `"completed"` state of the model.
-		toggleCompleted: function () {
-			this.model.toggle();
 		},
 
 		// Switch this view into `"editing"` mode, displaying the input field.

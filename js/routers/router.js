@@ -8,16 +8,11 @@ var app = app || {};
 	// ----------
 	var TodoRouter = Backbone.Router.extend({
 		routes: {
-			'*filter': 'setFilter'
+			'': 'root'
 		},
 
-		setFilter: function (param) {
-			// Set the current filter to be used
-			app.TodoFilter = param || '';
+		root: function () {
 
-			// Trigger a collection filter event, causing hiding/unhiding
-			// of Todo view items
-			app.todos.trigger('filter');
 		}
 	});
 
