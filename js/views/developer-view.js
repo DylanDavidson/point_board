@@ -8,7 +8,7 @@ var app = app || {};
 	// --------------
 
 	// The DOM element for a todo item...
-	app.TodoView = Backbone.View.extend({
+	app.DeveloperView = Backbone.View.extend({
 		//... is a list tag.
 		tagName:  'li',
 

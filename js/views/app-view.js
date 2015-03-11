@@ -34,21 +34,20 @@ var app = app || {};
 			this.$main = this.$('#main');
 			this.$list = $('#todo-list');
 
-			this.listenTo(app.todos, 'add', this.addOne);
-			this.listenTo(app.todos, 'reset', this.addAll);
-			this.listenTo(app.todos, 'all', this.render);
+			this.listenTo(app.developers, 'add', this.addOne);
+			this.listenTo(app.developers, 'reset', this.addAll);
+			this.listenTo(app.developers, 'all', this.render);
 
 			// Suppresses 'add' events with {reset: true} and prevents the app view
 			// from being re-rendered for every model. Only renders when the 'reset'
 			// event is triggered at the end of the fetch.
-			app.todos.fetch({reset: true});
+			app.developers.fetch({reset: true});
 		},
 
 		// Re-rendering the App just means refreshing the statistics -- the rest
 		// of the app doesn't change.
 		render: function () {
-
-			if (app.todos.length) {
+			if (app.developers.length) {
 				this.$main.show();
 				this.$footer.show();
 			} else {
@@ -59,22 +58,22 @@ var app = app || {};
 
 		// Add a single todo item to the list by creating a view for it, and
 		// appending its element to the `<ul>`.
-		addOne: function (todo) {
-			var view = new app.TodoView({ model: todo });
+		addOne: function (developer) {
+			var view = new app.DeveloperView({ model: developer });
 			this.$list.append(view.render().el);
 		},
 
 		// Add all items in the **Todos** collection at once.
 		addAll: function () {
 			this.$list.html('');
-			app.todos.each(this.addOne, this);
+			app.developers.each(this.addOne, this);
 		},
 
 		// Generate the attributes for a new Todo item.
 		newAttributes: function () {
 			return {
 				title: this.$input.val().trim(),
-				order: app.todos.nextOrder(),
+				order: app.developers.nextOrder(),
 				completed: false
 			};
 		},
@@ -83,7 +82,7 @@ var app = app || {};
 		// persisting it to *localStorage*.
 		createOnEnter: function (e) {
 			if (e.which === ENTER_KEY && this.$input.val().trim()) {
-				app.todos.create(this.newAttributes());
+				app.developers.create(this.newAttributes());
 				this.$input.val('');
 			}
 		}
