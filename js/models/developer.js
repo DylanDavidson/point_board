@@ -13,7 +13,7 @@ var app = app || {};
 		// and ensure that each todo created has `title` and `completed` keys.
 		defaults: {
 			title: '',
-			points: 0
+			points: 25
 		},
 	});
 })();
