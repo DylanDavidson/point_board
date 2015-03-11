@@ -20,6 +20,8 @@ var app = app || {};
 			'click .toggle': 'toggleCompleted',
 			'dblclick label': 'edit',
 			'click .destroy': 'clear',
+			'click .pull-request': 'pull_request',
+			'click .rubocop': 'rubocop',
 			'keypress .edit': 'updateOnEnter',
 			'keydown .edit': 'revertOnEscape',
 			'blur .edit': 'close'
@@ -57,6 +59,20 @@ var app = app || {};
 		edit: function () {
 			this.$el.addClass('editing');
 			this.$input.focus();
+		},
+
+		pull_request: function() {
+			this.model.save({ points: (this.model.attributes.points || 0) + 2 });
+		},
+
+		rubocop: function() {
+			var old_points = (this.model.attributes.points || 0);
+			var new_points;
+			if((old_points - 1) < 0)
+				new_points = 0;
+			else
+				new_points = old_points - 1;
+			this.model.save({ points: new_points });
 		},
 
 		// Close the `"editing"` mode, saving changes to the todo.

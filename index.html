@@ -30,7 +30,16 @@
 				<div class="meter">
 				  <span style="width: <%= (points / 100) * 100 %>%"></span>
 				</div>
+				<label><%- points %></label>
 				<button class="destroy"></button>
+				<div class="button_row">
+					<a class="pull-request btn green">
+						+2 Pull Request
+					</a>
+					<a class="rubocop btn red">
+						-1 Rubocop/Rspec
+					</a>
+				</div>
 			</div>
 			<input class="edit" value="<%- title %>">
 		</script>

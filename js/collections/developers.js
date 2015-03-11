@@ -23,7 +23,7 @@ var app = app || {};
 		},
 
 		// Todos are sorted by their original insertion order.
-		comparator: 'order'
+		comparator: 'points'
 	});
 
 	// Create our global collection of **Todos**.
