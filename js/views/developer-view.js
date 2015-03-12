@@ -63,6 +63,7 @@ var app = app || {};
 
 		pull_request: function() {
 			this.model.save({ points: (this.model.attributes.points || 0) + 2 });
+			this.model.collection.sort();
 		},
 
 		rubocop: function() {
@@ -73,6 +74,7 @@ var app = app || {};
 			else
 				new_points = old_points - 1;
 			this.model.save({ points: new_points });
+			this.model.collection.sort();
 		},
 
 		// Close the `"editing"` mode, saving changes to the todo.

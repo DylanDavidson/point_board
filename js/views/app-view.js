@@ -36,6 +36,7 @@ var app = app || {};
 
 			this.listenTo(app.developers, 'add', this.addOne);
 			this.listenTo(app.developers, 'reset', this.addAll);
+			this.listenTo(app.developers, 'sort', this.addAll);
 			this.listenTo(app.developers, 'all', this.render);
 
 			// Suppresses 'add' events with {reset: true} and prevents the app view
@@ -47,6 +48,8 @@ var app = app || {};
 		// Re-rendering the App just means refreshing the statistics -- the rest
 		// of the app doesn't change.
 		render: function () {
+			// this.$main.empty();
+			// this.$footer.empty();
 			if (app.developers.length) {
 				this.$main.show();
 				this.$footer.show();

@@ -23,7 +23,9 @@ var app = app || {};
 		},
 
 		// Todos are sorted by their original insertion order.
-		comparator: 'points'
+		comparator: function(developer) {
+			return -developer.get('points');
+		}
 	});
 
 	// Create our global collection of **Todos**.
